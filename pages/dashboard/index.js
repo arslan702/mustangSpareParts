@@ -150,7 +150,7 @@ function Dashboard({value, children}) {
             
             {/* <img src={finalLogo} height={60} alt='Logo' /> */}
 
-            <h2>BMW Parts</h2>
+            <h2>Auto Parts</h2>
           </Toolbar>
           <List component="nav">
             {mainListItems}

@@ -96,7 +96,7 @@ export default function HomePage() {
         <Box className={styles.home}>
           <div className={styles.homeheader}>
             <center>
-              <h1>Find Parts for your BMW</h1>
+              <h1>Find Parts for your Car</h1>
               <h3>
                 Over hundreds of sellers and tens of thousands of products
               </h3>

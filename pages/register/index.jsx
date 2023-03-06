@@ -53,7 +53,7 @@ export default function RegisterPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to BMW Parts
+              Sign in to Auto Parts
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 5 }}>
