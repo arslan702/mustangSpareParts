@@ -38,7 +38,7 @@ const Navbar = () => {
 
   const handleCart = (e) => {
     e.preventDefault();
-    router.push("/Cart/Cart");
+    router.push("/cart");
   };
   return (
     <div className={styles.navbar} id="navbar">
