@@ -40,9 +40,14 @@ const Navbar = () => {
     e.preventDefault();
     router.push("/cart");
   };
+
+  const handleHome = (e) => {
+    e.preventDefault();
+    router.push("/")
+  }
   return (
     <div className={styles.navbar} id="navbar">
-      <div className={styles.logo} id="logo">
+      <div onClick={(e) => handleHome(e)} className={styles.logo} id="logo">
         AutoParts
       </div>
 
