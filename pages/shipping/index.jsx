@@ -207,7 +207,7 @@ export default function Shipping() {
                   />
                 </div>
                 <Typography p={1}>Choose Your Payment Method</Typography>
-                <StripeCheckout
+                {/* <StripeCheckout
                   stripeKey="pk_test_51MiJZrDcFnOiz5snUFVY5HX28olfVYRcSxxCX1KL63rpBexrmIObSp35EpIdzp80J8q3jBnLjp19THCqmaxKTGAv00207MiZAX"
                   // stripeKey="pk_test_51MctRTK6Bj5jFFfcNMwZhbELzASvSsjuUcsHhZhirq8PaYYeNlkCJLIo80NUslGCgK9W56hPURqZs6i5dLDG3fue00zYTuDUxl"
                   className={styles.submitbtn}
@@ -217,7 +217,7 @@ export default function Shipping() {
                   amount={priceForStripe}
                   description={`Your total is ${totalPrice}`}
                   token={payNow}
-                />
+                /> */}
                 {/* <Button onClick={handlePayment}>Pay With Cash App</Button> */}
                 <br/>
                 {open ? (
