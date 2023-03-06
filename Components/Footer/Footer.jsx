@@ -117,7 +117,7 @@ export default function Footer() {
               <div className={styles.ico}>
                 <EmailIcon fontSize="medium" />
               </div>
-              <div className={classes.icons}>topqualityspareparts@gmail.com</div>
+              <div className={classes.icons}>kellyhood180@gmail.com</div>
             </Box>
           </Grid>
         </Grid>

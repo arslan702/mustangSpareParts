@@ -137,7 +137,7 @@ export default function HomePage() {
                   value={manufacturer}
                   onChange={(e, newValue) => setManufacturer(newValue)}
                   renderInput={(params) => (
-                    <TextField {...params} label="Select Model" />
+                    <TextField {...params} label="Select Manufacturer" />
                   )}
                 />
               </Box>
