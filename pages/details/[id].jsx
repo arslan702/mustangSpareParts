@@ -180,9 +180,12 @@ const useStyles = makeStyles((theme) =>
     },
     card: {
       width: "90%" ,
-      height:"500px",
+      height:"385px",
       margin: '1rem 1rem 1rem 1rem', 
-      backgroundColor:"#F0F2F2", 
+      backgroundColor:"#F0F2F2",
+      [theme.breakpoints.down('sm')]:{
+        height: '350px',
+      },
     },
     description: {
       color: 'rgb(56, 53, 53)',

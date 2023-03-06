@@ -141,7 +141,7 @@ const useStyles = makeStyles((theme) =>
       fontWeight: '100',
       fontSize: '1.1rem',
       color: 'white',
-      [theme?.breakpoints?.down("down")]: {
+      [theme?.breakpoints?.down("sm")]: {
         padding: '2px 0 0 1rem',
         margin: '0.7rem 0 0 0',
       }
@@ -168,7 +168,7 @@ const useStyles = makeStyles((theme) =>
       fontWeight: '100',
       padding: '0.7rem 0 0 1.3rem',
       color: 'rgb(168, 178, 184)',
-      [theme?.breakpoints?.down("down")]: {
+      [theme?.breakpoints?.down("sm")]: {
         padding: '0.7rem 0 0 1rem',
       }
     },

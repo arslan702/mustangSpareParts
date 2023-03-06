@@ -3,8 +3,10 @@ import styles from "./contact.module.css";
 import { Box, Container } from "@mui/system";
 import Grid from "@mui/system/Unstable_Grid";
 import { Typography, Button } from "@mui/material";
+import { createStyles, makeStyles } from "@mui/styles";
 
 export default function Contact() {
+  const classes = useStyles();
   return (
     <Box className={styles.contact}>
       <Container>
@@ -21,7 +23,7 @@ export default function Contact() {
         <br />
         <form action="">
           <Grid container>
-            <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Grid item xs={12} sm={12} md={6} lg={6} sx={{marginTop: '15px'}}>
               <label htmlFor="" className={styles.texthead}>
                 Name
               </label>
@@ -33,7 +35,7 @@ export default function Contact() {
                 className={styles.name}
               />
             </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Grid item xs={12} sm={12} md={6} lg={6} sx={{marginTop: '15px'}}>
               <label htmlFor="" className={styles.texthead}>
                 Email Address
               </label>
@@ -45,7 +47,6 @@ export default function Contact() {
                 required
                 className={styles.name}
               />
-              <br />
               <br />
               <br />
             </Grid>
@@ -71,3 +72,11 @@ export default function Contact() {
     </Box>
   );
 }
+
+const useStyles = makeStyles((theme) => 
+  createStyles({
+    btn: {
+      margin: '1rem 0',
+    },
+  })
+)
