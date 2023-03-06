@@ -56,13 +56,12 @@
       border-radius: 5px 5px 0 0;
       padding: 1rem;
 }
-.textfield {
+/* .textfield {
   background-color: white;
   width: 90%;
   margin-left: .5rem;
-  /* margin: .5rem ; */
   border-radius: 5px;  
-}
+} */
   .input {
   z-index: 10;
   padding: 1rem 0;
