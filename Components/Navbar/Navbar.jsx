@@ -12,6 +12,7 @@ const Navbar = () => {
   const [category, setCategory] = useState([]);
   const [stor, setStor] = useState([]);
   const [baseUrl, setBaseUrl] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     // let parser =
@@ -125,90 +126,46 @@ const Navbar = () => {
         // className={`${styles.menu}` (menuOpen && `${styles.active}`)}
       >
         <ul>
-          <li>
+        <li>
             {" "}
             <Link
               href="/"
               className={styles.pink}
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              Accesories
+              All
             </Link>
-            <div className={styles.submenu}>
-              <ul>
-                <li className={styles.dropdown}>Floor mates</li>
-                <li className={styles.dropdown}>Camera</li>
-                <li className={styles.dropdown}>Sun Shades</li>
-                <li className={styles.dropdown}>Door guards</li>
-                <li className={styles.dropdown}>Top covers</li>
-                <li className={styles.dropdown}>Car Charger</li>
-              </ul>
-            </div>
           </li>
-          <li>
-            {" "}
-            <Link
-              href="/aboutUs"
-              className={styles.pink}
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              Engine & Parts
-            </Link>
-            <div className={styles.submenu}>
-              <ul>
-                <li className={styles.dropdown}>Generator</li>
-                <li className={styles.dropdown}>Radiator bottle</li>
-                <li className={styles.dropdown}>Fuel</li>
-                <li className={styles.dropdown}>Engine</li>
-                <li className={styles.dropdown}>Cylinder Head</li>
-                <li className={styles.dropdown}>Filter</li>
-                <li className={styles.dropdown}>Belts</li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            {" "}
-            <Link
-              href=""
-              className={styles.pink}
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              Exterior
-            </Link>
-            <div className={styles.submenu}>
-              <ul>
-                <li className={styles.dropdown}>Mud Flat</li>
-                <li className={styles.dropdown}>Back cut</li>
-                <li className={styles.dropdown}>Doors</li>
-                <li className={styles.dropdown}>Side Mirrors</li>
-                <li className={styles.dropdown}>Panels</li>
-                <li className={styles.dropdown}>Side steps</li>
-              </ul>
-            </div>
-          </li>
+        {category?.map((cat) => (
           <li>
             {" "}
             <Link
               href="/"
+              onClick={(e) => handleClick(e, cat?.category)}
               className={styles.pink}
-              onClick={() => setMenuOpen(!menuOpen)}
+              // onMouseOver={() => setOpen(true)}
+              // onMouseOut={() => setOpen(false)}
             >
-              Lights
+              {cat?.category}
             </Link>
+            {open ? 
             <div className={styles.submenu}>
               <ul>
-                <li className={styles.dropdown}>Fog light</li>
-                <li className={styles.dropdown}>Head light</li>
-                <li className={styles.dropdown}>Other lights</li>
-                <li className={styles.dropdown}>Tail lights</li>
-                <li className={styles.dropdown}>Turn lights</li>
+                {cat?.subCategory?.map((sub, index) => (
+                <li 
+                  key={index}
+                  onClick={(e) => handleSubCategoryClick(e, sub)}
+                  className={styles.dropdown}
+                  >{sub}</li>
+                ))}
               </ul>
-            </div>
+            </div>: ''}
           </li>
+          ))}
           <li>
             {" "}
             <Link
-              href="/cash"
+              href="/"
               className={styles.pink}
               onClick={() => setMenuOpen(!menuOpen)}
             >

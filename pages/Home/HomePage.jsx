@@ -128,7 +128,7 @@ export default function HomePage() {
                 <Autocomplete
                   select
                   id="outlined-basic"
-                  options={options || []}
+                  options={options}
                   required
                   getOptionLabel={(option) => option}
                   label="Manufacturer"

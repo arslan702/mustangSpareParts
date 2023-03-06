@@ -129,7 +129,7 @@ export default function CustomizedAccordions() {
         .get(
           `/api/product/get?page=${page}&size=12&field=searching&search=${encodeURIComponent(
             search
-          )}&manufacturer=${manufactureer}&model=${encodeURIComponent(model)}&year=${year}`
+          )}&manufacturer=${manufacturer}&model=${encodeURIComponent(model)}&year=${year}`
         )
         .then((res) => {
           setProducts(res?.data?.products);
