@@ -1,0 +1,114 @@
+.footer {
+    padding-top: 2rem;
+    background-color: #232323;
+    height: auto;
+  }
+  
+  .about {
+    line-height: 25px;
+    padding: 15px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-weight: 100;
+    color: rgb(168, 178, 184);
+
+  }
+  .about:hover{
+    color: white;
+  cursor: pointer;
+  }
+  .footerdetail {
+    text-align: left;
+    font-weight: 100;
+    font-size: 10px;
+  }
+  
+  .helpdetails {
+    font-size: 0.9rem;
+    font-weight: 100;
+    padding: 0.7rem 0 0 1.3rem;
+    color: rgb(168, 178, 184);
+ 
+
+  }
+  .helpdetails:hover {
+    cursor: pointer;
+    margin-right: 2px;
+    color: white;
+
+  }
+  .menudetails {
+    font-size: 0.9rem;
+    font-weight: 100;
+    padding: 0.7rem 0 0 0.9rem;
+    
+    color: rgb(168, 178, 184);
+  }
+  .menudetails:hover {
+    color: white;
+    cursor: pointer;
+    margin-right: 2px;
+  }
+  .icons {
+    font-size: 0.9rem;
+    padding: 6px;
+    margin: 0 5px;
+  }
+  .icons:hover {
+    color: rgb(168, 178, 184);
+    cursor: pointer;
+  }
+  .ico {
+    margin-top: 0.3rem;
+    color: rgb(168, 178, 184);
+  }
+  .ico:hover {
+    color: white;
+    margin-right: 2px;
+    cursor: pointer;
+  }
+  .boxIcon {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.7rem;
+    /* color: white; */
+    padding: 0rem 0 0 1.3rem;
+    color: rgb(168, 178, 184);
+
+  }
+  .footerheader {
+    font-weight: 100;
+    font-size: 1.1rem;
+    color: white;
+  }
+  .footerheader:hover {
+    cursor: pointer;
+    color: white;
+  }
+  .footerrights {
+    margin: auto;
+    text-align: center;
+    padding: 2.3rem 0rem 1rem 0;
+    font-size: 1rem;
+    color: rgb(168, 178, 184);
+
+  }
+  .footerrights:hover {
+    cursor: pointer;
+    color: white;
+  }
+  
+  
+  @media screen and (min-width: 300px) and (max-width: 600px) {
+    .helpdetails {
+      padding: 0.7rem 0 0 1rem;
+    }
+    .boxIcon {
+      padding: 0rem 0 0 0.8rem;
+    }
+    .footerheader {
+      padding: 2px 0 0 1rem;
+      margin: 0.7rem 0 0 0;
+    }
+  }
+  

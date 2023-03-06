@@ -1,0 +1,3 @@
+export const CLOUDINARY_NAME = 'dyn5n92fj';
+export const CLOUDINARY_API_KEY = '913751615159165';
+export const CLOUDINARY_API_SECRET = 'wgHflzrX0KSZnlj34IK67U6M2Zk';

@@ -1,0 +1,82 @@
+.createProductFormFile > input {
+  display: flex;
+  padding: 0%;
+}
+
+.createProductFormFile > input::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  font: 400 0.8vmax cursive;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+.createProductFormFile > input::file-selector-button:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.createProductFormImage {
+  width: 100%;
+  overflow: auto;
+}
+
+.createProductFormImage > img {
+  width: 3vmax;
+  margin: 0 0.5vmax;
+}
+
+@media screen and (max-width: 600px) {
+  .createProductFormFile > img {
+    width: 8vmax;
+    border-radius: 100%;
+  }
+
+  .createProductFormFile > input::file-selector-button {
+    height: 7vh;
+    font: 400 1.8vmax cursive;
+  }
+}
+
+.productList{
+  flex: 4;
+}
+
+.productListItem{
+  display: flex;
+  align-items: center;
+}
+
+.productListImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.productListEdit{
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.productListDelete{
+  color: red;
+  cursor: pointer;
+}
+
+.paginationBox {
+  display: flex;
+  justify-content: center;
+  margin: 6vmax;
+}

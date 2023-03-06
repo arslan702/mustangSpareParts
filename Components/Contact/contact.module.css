@@ -1,0 +1,32 @@
+.contact{
+  background-color: whitesmoke;
+  height: auto;   
+}
+.contacthead{
+  font-size: 2.4rem;
+  padding: 1rem 0;
+}
+.name{
+  width: 95%;
+  height: 3rem;
+  outline: none;
+  border: none;
+  margin-top: 5px;
+  padding: 0 1rem;
+  border-radius: 5px;
+}
+.textarea{
+  width: 97.5%;
+  height: 7rem;
+  outline: none;
+  border: none;
+  margin-top: 1rem ;
+  padding: 0 1rem;
+  border-radius: 5px;
+}
+.texthead{
+color: rgb(119, 118, 118);
+}
+.btn{
+  margin: 1rem 0;
+}

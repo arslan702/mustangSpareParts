@@ -1,0 +1,17 @@
+
+.faq{
+    margin: .4rem;
+}
+.card{
+    height: 430px;
+    width: 95%;
+    margin: auto;
+}
+.img{
+    object-fit: cover;
+}
+.summary{
+    background-color: white;
+    box-shadow: 0px 0px 15px #e2e2e2;
+
+}

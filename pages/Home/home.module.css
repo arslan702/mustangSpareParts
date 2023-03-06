@@ -1,0 +1,189 @@
+.home {
+  /* background-image: url("../../Images/sub-header.jpg"); */
+  background-image: url("../../Images/BMBackground.jpeg");
+  height: 80vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.homeheader {
+  top: 20%;
+  color: white;
+}
+.homeheader h1 {
+  font-size: 3rem;
+  padding-top: 4rem;
+}
+.homeheader h3 {
+  font-size: 2.1rem;
+}
+.homesearch {
+  position: absolute;
+  height: auto;
+  width: 90%;
+  left: 5%;
+  top: 45%;
+  padding: 1rem;
+  /* z-index: 10; */
+}
+.homesearch::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  /* z-index: 10; */
+}
+.textfield {
+  background-color: white;
+  width: 15rem;
+  border-radius: 5px;
+  /* border: 1px solid grey; */
+  /* z-index: 100; */
+}
+
+.input {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* z-index: 10; */
+  padding: 1rem 0;
+}
+.icon {
+  cursor: pointer;
+  color: white;
+  background-color: #be1818;
+  height: 3.5rem;
+  width: 4rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.ico {
+  font-size: 2.5rem;
+}
+.quality {
+  margin: 2.5rem 0;
+  height: 110px;
+  width: 83.5%;
+  background-color: white;
+  margin: auto;
+  border-radius: 50px;
+  box-shadow: 0px 5px 8px -5px black;
+  position: absolute;
+  top: 80%;
+  left: 8%;
+}
+
+.shipdetails {
+  text-align: left;
+  margin: 0 0.9rem;
+}
+.box {
+  height: 120px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 997px) {
+  .textfield {
+    width: 8rem;
+  }
+  .quality {
+    height: auto;
+    top: 70%;
+  }
+  .box {
+    height: 90px;
+  }
+  .homeheader {
+    top: 26%;
+  }
+  .homeheader h1 {
+    font-size: 2.7rem;
+    margin: 0px;
+  }
+  .homeheader h3 {
+    font-size: 2.2rem;
+  }
+}
+
+@media screen and (min-width: 330px) and (max-width: 767px) {
+  .home {
+    height: 93vh;
+  }
+
+  .input {
+    display: block;
+    width: 100%;
+  }
+  .textfield {
+    width: 100%;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .homesearch {
+    height: auto;
+    width: 90%;
+    margin: auto;
+    left: 5%;
+    top: 31%;
+    /* z-index: 10; */
+  }
+  .quality {
+    top: 85%;
+    height: auto;
+    width: 90%;
+    margin: auto;
+    left: 5%;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  .icon {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+  .homeheader {
+    top: 15%;
+    /* left: 0%; */
+  }
+  .homeheader h1 {
+    font-size: 2.5rem;
+  }
+  .box {
+    height: 70px;
+  }
+  @media screen and (min-width: 460px) and (max-width: 600px) {
+    .home {
+      height: 100vh;
+    }
+
+    .homeheader h1 {
+      font-size: 2.5rem;
+      margin-left: 0;
+    }
+    .homeheader h3 {
+      font-size: 1.7rem;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .home {
+      height: 105vh;
+    }
+    .homeheader h1 {
+      font-size: 2.1rem;
+      text-align: center;
+    }
+    .homeheader h3 {
+      font-size: 1.3rem;
+      text-align: center;
+    }
+  }
+}
