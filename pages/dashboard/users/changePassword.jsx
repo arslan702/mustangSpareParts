@@ -10,7 +10,7 @@ function ChangePassword() {
   const [value, setValue] = useState({});
 
   useEffect(() => {
-    setValue(JSON.parse(localStorage.getItem('info')))
+    setValue(JSON.parse(localStorage.getItem('info')) || null)
   }, []);
 
   const userId = value?.id;
@@ -132,15 +132,15 @@ const useStyles = makeStyles((theme) =>
     formFields: {
       flexBasis: '45%',
       margin: '10px',
-      [theme.breakpoints.down('sm')]: {
-        flexBasis: '90%',
-      },
+      // [theme.breakpoints.down('sm')]: {
+      //   flexBasis: '90%',
+      // },
     },
     textEditor: {
       flexBasis: '91.5%',
-      [theme.breakpoints.down('sm')]: {
-        flexBasis: '90%',
-      },
+      // [theme.breakpoints.down('sm')]: {
+      //   flexBasis: '90%',
+      // },
     },
     buttons: {
       flexBasis: '91.5%',
