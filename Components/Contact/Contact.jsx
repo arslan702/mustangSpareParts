@@ -8,7 +8,7 @@ import { createStyles, makeStyles } from "@mui/styles";
 export default function Contact() {
   const classes = useStyles();
   return (
-    <Box className={styles.contact}>
+    <Box className={styles.contact} id="contact-form">
       <Container>
         <center>
           <Typography className={styles.contacthead}>

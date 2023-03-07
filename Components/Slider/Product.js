@@ -20,7 +20,7 @@ export default function Product(props) {
     className={styles.card}>
       <Image className={styles.productimage} width={600} height={500} src={props.url} alt="product image" />
       <br/>
-      <p className={styles.description} >{props.description}</p> <br/>
+      <p className={styles.description} >{props.name}</p> <br/>
       <p className={styles.price}>{props?.oldprice > 0 ? <del className={styles.oldprice} >{props.oldprice}</del>: '' }   <span>${props.price}</span>    </p> <br/>
     </div>
     {/* </Link> */}

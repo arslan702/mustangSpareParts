@@ -198,6 +198,10 @@
   font-weight: 500;
 }
 
+.mobilemenu {
+  display: none;
+}
+
 .right,
 .menu {
   display: none;
@@ -285,6 +289,11 @@
     display: none;
   }
 
+  .mobilemenu {
+    display: block;
+    margin-left: -130px;
+  }
+
   .right,
   .menu {
     display: flex;
@@ -306,5 +315,6 @@
   }
   .icon{
     margin: 0;
+    padding-top: 0;
   }
 }

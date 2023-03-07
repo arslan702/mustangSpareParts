@@ -18,6 +18,8 @@ import {
   TextField,
   Pagination,
   Autocomplete,
+  useMediaQuery,
+  Drawer,
 } from "@mui/material";
 import { Box } from "@mui/system";
 // import Link from "next/link";
@@ -82,6 +84,18 @@ export default function CustomizedAccordions() {
   const [pageSize, setPageSize] = useState();
   const [acordCategory, setAcordCategory] = useState([]);
 
+  const matches = useMediaQuery((theme) => theme.breakpoints.up("md"));
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     axios
       .get(`/api/model/get`)
@@ -89,9 +103,9 @@ export default function CustomizedAccordions() {
         setManufacturerOption(res.data)
         console.log(res.data)
       })
-    if(manufacturer !== '') {
+    if(manufactureer !== '') {
       axios
-      .get(`/api/model/getSub/${manufacturer}`)
+      .get(`/api/model/getSub/${manufactureer}`)
       .then((res) => {
         setModelOption(res?.data?.model)
       })
@@ -137,9 +151,10 @@ export default function CustomizedAccordions() {
           setPageSize(res?.data?.pageSize);
         });
     }
-  }, [page, category, sub]);
+  }, [page, category, sub, manufactureer]);
 
   const handleSubClick = (e, sub) => {
+    handleDrawerClose();
     e.preventDefault();
     axios
       .get(`/api/product/get?page=${page}&size=12&field=sub&search=${sub}`)
@@ -167,6 +182,7 @@ export default function CustomizedAccordions() {
   );
 
   const handleSearch = (e) => {
+    handleDrawerClose();
     e.preventDefault();
     axios
       .get(
@@ -203,6 +219,7 @@ export default function CustomizedAccordions() {
         {/* <Container> */}
         <Box className={styles.products}>
           <Grid container>
+            {matches ? 
             <Grid item xs={12} sm={12} md={2.5} lg={2.5}>
               <Box className={styles.search}>
                 <Box className={styles.searchbar}>
@@ -331,6 +348,156 @@ export default function CustomizedAccordions() {
                 </Accordion>
               ))}
             </Grid>
+            : 
+            <div>
+            <div style={{display: 'flex', justifyContent: 'center', marginLeft: '22px'}}>
+            <center>
+              <Button variant="contained" color="error" onClick={handleDrawerOpen}>
+                Search
+              </Button>
+            </center>
+            </div>
+            <Drawer
+              className={classes.drawer}
+              variant="temporary"
+              anchor="left"
+              open={open}
+              onClose={handleDrawerClose}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              <Grid item xs={12} sm={12} md={2.5} lg={2.5} className={classes.drawerContainer}>
+              <Box className={styles.search}>
+                <Box className={styles.searchbar}>
+                  <Typography>
+                    <b>Search</b>
+                  </Typography>
+                </Box>
+                <Box
+                  className={styles.homesearch}
+                  component="form"
+                  sx={{
+                    "& > :not(style)": {},
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <Box className={styles.input}>
+                    <Box>
+                      <TextField
+                        id="outlined-basic"
+                        label="Search"
+                        variant="outlined"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        size="small"
+                        className={classes.textfield}
+                      />
+                    </Box>
+                    <br/>
+                    <Box>
+                    <Autocomplete
+                        select
+                        size="small"
+                        id="outlined-basic"
+                        options={options || []}
+                        required
+                        getOptionLabel={(option) => option}
+                        label="Manufacturer"
+                        variant="outlined"
+                        className={classes.textfield}
+                        value={manufactureer}
+                        onChange={(e, newValue) => setManufacturer(newValue)}
+                        renderInput={(params) => (
+                          <TextField {...params} label="Select Manufacturer" />
+                        )}
+                      />
+                    </Box>
+                    <br/>
+                    <Box>
+                      <Autocomplete
+                        select
+                        size="small"
+                        id="outlined-basic"
+                        options={modelOption || []}
+                        required
+                        getOptionLabel={(option) => option}
+                        label="Model"
+                        variant="outlined"
+                        className={classes.textfield}
+                        value={modeel}
+                        onChange={(e, newValue) => setModel(newValue)}
+                        renderInput={(params) => (
+                          <TextField {...params} label="Select Model" />
+                        )}
+                      />
+                    </Box>
+                    <br/>
+                    <Box>
+                      <Autocomplete
+                        id="year-picker"
+                        size="small"
+                        options={yearList}
+                        className={classes.textfield}
+                        getOptionLabel={getOptionLabel}
+                        value={yearr}
+                        onChange={handleStartYearChange}
+                        required
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            label="Select Model Year"
+                            variant="outlined"
+                          />
+                        )}
+                      />
+                    </Box>
+                    <br/>
+                    <Box className={styles.icon}>
+                      <Button
+                        onClick={handleSearch}
+                        variant="contained"
+                        className={classes.btn}
+                      >
+                        Search
+                      </Button>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+              <Box className={styles.category}>Categories</Box>
+              {acordCategory?.map((acord, index) => (
+                <Accordion
+                  expanded={expanded === `panel+${index + 1}`}
+                  onChange={handleChange(`panel+${index + 1}`)}
+                >
+                  <AccordionSummary
+                    aria-controls="panel1d-content"
+                    id="panel1d-header"
+                    className={styles.summary}
+                  >
+                    <Typography className={styles.cathead}>
+                      {acord?.category}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    {acord?.subCategory?.map((sub, index) => (
+                      <Typography
+                        onClick={(e) => handleSubClick(e, sub)}
+                        key={index}
+                        className={styles.catlist}
+                      >
+                        {sub}
+                      </Typography>
+                    ))}
+                  </AccordionDetails>
+                </Accordion>
+              ))}
+            </Grid>
+            </Drawer>
+            </div>
+            }
 
             <Grid item xs={12} sm={12} md={9} lg={9}>
               <Box className={styles.producthead}>Products</Box>
@@ -501,6 +668,16 @@ const useStyles = makeStyles((theme) =>
       fontSize: '0.9rem',
       padding: '6px',
       margin: '0 5px',
+    },
+    drawer: {
+      width: '250px',
+      flexShrink: 0,
+    },
+    drawerPaper: {
+      width: '300px',
+    },
+    drawerContainer: {
+      overflow: 'auto',
     },
   })
 );

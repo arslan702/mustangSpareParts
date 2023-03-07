@@ -1,18 +1,41 @@
 import React, { Fragment, useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import Link from "next/link";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import axios from "axios";
-import { Badge } from "@mui/material";
+import { Badge, IconButton, Menu, MenuItem } from "@mui/material";
 import { useRouter } from "next/router";
 
 const Navbar = () => {
   const router = useRouter();
-  const [menuOpen, setMenuOpen] = useState(false);
   const [category, setCategory] = useState([]);
   const [stor, setStor] = useState([]);
   const [baseUrl, setBaseUrl] = useState('');
-  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [subMenuAnchorEls, setSubMenuAnchorEls] = useState({});
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSubMenuOpen = (event, id) => {
+    setSubMenuAnchorEls((prevState) => ({
+      ...prevState,
+      [id]: event.currentTarget
+    }));
+  };
+
+  const handleSubMenuClose = (id) => {
+    setSubMenuAnchorEls((prevState) => ({
+      ...prevState,
+      [id]: null
+    }));
+  };
 
   useEffect(() => {
     // let parser =
@@ -25,7 +48,22 @@ const Navbar = () => {
         setCategory(res.data);
       })
       .catch((error) => console.log(error));
-  }, []);
+
+      const handleScroll = () => {
+        if (anchorEl) {
+          handleMenuClose();
+        }
+        Object.keys(subMenuAnchorEls).forEach((key) => {
+          if (subMenuAnchorEls[key]) {
+            handleSubMenuClose(key);
+          }
+        });
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+  }, [anchorEl, subMenuAnchorEls]);
 
   const handleClick = (e, categ) => {
     e.preventDefault();
@@ -46,6 +84,7 @@ const Navbar = () => {
     e.preventDefault();
     router.push("/")
   }
+
   return (
     <div className={styles.navbar} id="navbar">
       <div onClick={(e) => handleHome(e)} className={styles.logo} id="logo">
@@ -90,7 +129,7 @@ const Navbar = () => {
           ))}
           <li>
             {" "}
-            <Link href="/contact" className={styles.pink}>
+            <Link href="" className={styles.pink}>
               Contact Us
             </Link>
           </li>
@@ -102,78 +141,47 @@ const Navbar = () => {
         </Badge>
       </div>
 
-      {/* Mobile menu  */}
-      <div
-        className={
-          menuOpen ? `${styles.right} ${styles.active}` : `${styles.right}`
-        }
-        // className={`${styles.right}` + (menuOpen && `${styles.active}`)}
+      <div className={styles.mobilemenu}>
+      <IconButton
+        aria-label="more"
+        aria-controls="mobile-menu"
+        aria-haspopup="true"
+        onClick={handleMenuOpen}
       >
-        <div
-          className={styles.hamburger}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span className={styles.line1}></span>
-          <span className={styles.line2}></span>
-          <span className={styles.line3}></span>
-        </div>
-      </div>
-      {/* <div className={menuOpen ? `${styles.menu}` `${styles.active}` : `${styles.menu}`}></div> */}
-      <div
-        className={
-          menuOpen ? `${styles.menu} ${styles.active}` : `${styles.menu}`
-        }
-        // className={`${styles.menu}` (menuOpen && `${styles.active}`)}
+        <MoreVertIcon />
+      </IconButton>
+      <Menu
+        id="mobile-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
       >
-        <ul>
-        <li>
-            {" "}
-            <Link
-              href="/"
-              className={styles.pink}
-              onClick={() => setMenuOpen(!menuOpen)}
+        {category?.map((item) => (
+          <MenuItem
+            key={item._id}
+            onClick={(e) => handleSubMenuOpen(e, item._id)}
+          >
+            {item?.category}
+            <Menu
+              id={`sub-menu-${item._id}`}
+              anchorEl={subMenuAnchorEls[item._id]}
+              keepMounted
+              open={Boolean(subMenuAnchorEls[item._id])}
+              onClose={() => handleSubMenuClose(item._id)}
+              onScroll={() => handleSubMenuClose(item._id)}
             >
-              All
-            </Link>
-          </li>
-        {category?.map((cat) => (
-          <li>
-            {" "}
-            <Link
-              href="/"
-              onClick={(e) => handleClick(e, cat?.category)}
-              className={styles.pink}
-              // onMouseOver={() => setOpen(true)}
-              // onMouseOut={() => setOpen(false)}
-            >
-              {cat?.category}
-            </Link>
-            {open ? 
-            <div className={styles.submenu}>
-              <ul>
-                {cat?.subCategory?.map((sub, index) => (
-                <li 
-                  key={index}
-                  onClick={(e) => handleSubCategoryClick(e, sub)}
-                  className={styles.dropdown}
-                  >{sub}</li>
-                ))}
-              </ul>
-            </div>: ''}
-          </li>
-          ))}
-          <li>
-            {" "}
-            <Link
-              href="/"
-              className={styles.pink}
-              onClick={() => setMenuOpen(!menuOpen)}
-            >
-              Contact Us
-            </Link>
-          </li>
-        </ul>
-      </div>
+              {item?.subCategory?.map((subMenuItem, index) => (
+                <MenuItem key={index} onClick={(e) => handleSubCategoryClick(e, subMenuItem)}>
+                  {subMenuItem}
+                </MenuItem>
+              ))}
+            </Menu>
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+
     </div>
   );
 };

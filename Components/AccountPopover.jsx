@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+import { useRouter } from 'next/router';
 
 export default function AccountPopover() {
   const [open, setOpen] = useState(null);
   const [value, setValue] = useState({});
+  const router = useRouter();
 
   useEffect(() => {
     setValue(JSON.parse(localStorage.getItem('info')))
@@ -18,6 +20,10 @@ export default function AccountPopover() {
     setOpen(null);
   };
 
+  const handleChangePassword = (e) => {
+    e.preventDefault();
+    router.push('/dashboard/users/changePassword')
+  }
   const handleLogout = () => {
     localStorage.removeItem('user', { path: '/' });
     localStorage.removeItem('info');
@@ -77,9 +83,10 @@ export default function AccountPopover() {
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Divider sx={{ borderStyle: 'dashed' }} />
-
+        <MenuItem onClick={handleChangePassword} sx={{ m: 1 }}>
+          Change Password
+        </MenuItem>
         <Divider sx={{ borderStyle: 'dashed' }} />
-
         <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
           Logout
         </MenuItem>
