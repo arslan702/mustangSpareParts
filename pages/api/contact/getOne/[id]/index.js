@@ -1,4 +1,4 @@
-import Model from "@/models/model";
+import Contact from "@/models/contact";
 import connectMongo from "../../../../../utils/connectDB";
 
 connectMongo();
@@ -6,17 +6,17 @@ connectMongo();
 export default async (req, res) => {
   switch(req.method){
     case "GET":
-      await getModel(req, res)
+      await getContact(req, res)
       break;
   }
 }
 
-const getModel = async(req, res) => {
+const getContact = async(req, res) => {
   try {
     // console.log("params  ", req.query.id);
-    const model = await Model.findById(req.query.id);
+    const contact = await Contact.findById(req.query.id);
 
-    res.status(200).json(model);
+    res.status(200).json(contact);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }

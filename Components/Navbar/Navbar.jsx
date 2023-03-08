@@ -43,7 +43,7 @@ const Navbar = () => {
     const khopta = JSON.parse(localStorage.getItem("cart") || null);
     setStor(khopta);
     axios
-      .get(`/api/category/get`)
+      .get(`/api/category/get?page=4`)
       .then((res) => {
         setCategory(res.data);
       })

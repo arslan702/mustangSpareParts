@@ -35,7 +35,7 @@ export default function Brands() {
 
   const handleClick = (e, categ) => {
     e.preventDefault();
-    router.push(`a/?category=${encodeURIComponent(categ)}`)
+    router.push(`a/?field=${encodeURIComponent(categ)}`)
   }
   return (
     <Box>

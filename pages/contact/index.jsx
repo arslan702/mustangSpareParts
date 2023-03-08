@@ -39,6 +39,7 @@ export default function Shipping() {
   const classes = useStyles();
   const [stor, setStor] = useState([]);
   const [load, setLoad] = useState(false);
+  const [contact, setContact] = useState([]);
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const [firstname, setFirstName] = useState('');
@@ -67,7 +68,15 @@ export default function Shipping() {
   //   delivered: "not delivered",
   // });
 
-  // useEffect(() => {
+  useEffect(() => {
+    axios
+      .get(`/api/contact/get`)
+      .then((res) => {
+        console.log(res.data)
+        setContact(res.data);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   //   const khopta = JSON.parse(localStorage.getItem("cart") || null);
   //   setStor(khopta);
   //   const newArray =
@@ -78,7 +87,7 @@ export default function Shipping() {
   //       };
   //     }) || [];
   //   setOrder({ ...order, products: [...newArray] });
-  // }, []);
+  }, []);
   // console.log({ order });
 
   // const totalPrice = stor?.reduce((acc, item) => {
@@ -319,37 +328,43 @@ export default function Shipping() {
             lg={5}
             className={styles.contactdetail}
           >
+            {contact?.[0]?.phoneNo ? 
             <Box className={styles.contact}>
               <Box className={styles.icon}>
                 <CallIcon />
               </Box>
               <Box className={styles.info}>
                 <Typography>Phone No</Typography>
-                <Typography>+12345678</Typography>
+                <Typography>{contact?.[0]?.phoneNo}</Typography>
               </Box>
             </Box>
+            : ''}
             <br />
             <br />
+            {contact?.[0]?.whatsAppNo ? 
             <Box className={styles.contact}>
               <Box className={styles.icon}>
                 <WhatsAppIcon />
               </Box>
               <Box className={styles.info}>
                 <Typography>WhatsApp</Typography>
-                <Typography>+12345678</Typography>
+                <Typography>{contact?.[0]?.whatsAppNo}</Typography>
               </Box>
             </Box>
+            : ''}
             <br />
             <br />
+            {contact?.[0]?.timeFrom && contact?.[0]?.toTime ? 
             <Box className={styles.contact}>
               <Box className={styles.icon}>
                 <CalendarMonthIcon />
               </Box>
               <Box className={styles.info}>
                 <Typography>Schedule</Typography>
-                <Typography>8AM to 5PM</Typography>
+                <Typography>{contact?.[0]?.timeFrom} to {contact?.[0]?.toTime}</Typography>
               </Box>
             </Box>
+            : ''}
             <br />
             <br />
           </Grid>

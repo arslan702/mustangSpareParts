@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./footer.module.css";
 import { Container, Typography, Box } from "@mui/material";
 import Grid from "@mui/system/Unstable_Grid";
@@ -7,10 +7,23 @@ import PhoneSharpIcon from '@mui/icons-material/PhoneSharp';
 import EmailIcon from "@mui/icons-material/Email";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Footer() {
   const classes = useStyles();
   const router = useRouter();
+  const [contact, setContact] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`/api/contact/get`)
+      .then((res) => {
+        console.log(res.data)
+        setContact(res.data);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
+  },[])
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -101,24 +114,29 @@ export default function Footer() {
             <Typography variant="h4" px={3} className={classes.footerheader}>
               Contact Us
             </Typography>
+            {contact?.[0]?.phoneNo ?
             <Box className={classes.boxIcon}>
               <div className={styles.ico}>
                 <PhoneSharpIcon fontSize="medium" />
               </div>
-              <div className={classes.icons}>+12345678</div>
-            </Box>
+              <div className={classes.icons}>{contact?.[0]?.phoneNo}</div>
+            </Box>: ''}
+            {contact?.[0]?.whatsAppNo ? 
             <Box className={styles.boxIcon}>
               <div className={styles.ico}>
                 <WhatsAppIcon fontSize="medium" />
               </div>
-              <div className={classes.icons}>+12345678</div>
+              <div className={classes.icons}>{contact?.[0]?.whatsAppNo}</div>
             </Box>
+            : ''}
+            {contact?.[0]?.email ? 
             <Box className={styles.boxIcon}>
               <div className={styles.ico}>
                 <EmailIcon fontSize="medium" />
               </div>
-              <div className={classes.icons}>kellyhood180@gmail.com</div>
+              <div className={classes.icons}>{contact?.[0]?.email}</div>
             </Box>
+            : ''}
           </Grid>
         </Grid>
         <Grid>
