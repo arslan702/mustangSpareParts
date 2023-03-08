@@ -129,17 +129,17 @@ const Navbar = () => {
           ))}
           <li>
             {" "}
-            <Link href="" className={styles.pink}>
+            <Link href="/contact" className={styles.pink}>
               Contact Us
             </Link>
           </li>
         </ul>
       </div>
-      <div onClick={(e) => handleCart(e)} className={styles.icon}>
+      {/* <div onClick={(e) => handleCart(e)} className={styles.icon}>
         <Badge badgeContent={stor?.length} color="error">
           <ShoppingCartIcon />
         </Badge>
-      </div>
+      </div> */}
 
       <div className={styles.mobilemenu}>
       <IconButton
@@ -179,6 +179,11 @@ const Navbar = () => {
             </Menu>
           </MenuItem>
         ))}
+        <MenuItem>
+          <Link href='/contact'>
+          Contact Us
+          </Link>
+        </MenuItem>
       </Menu>
     </div>
 

@@ -103,13 +103,7 @@ export default function CustomizedAccordions() {
         setManufacturerOption(res.data)
         console.log(res.data)
       })
-    if(manufactureer !== '') {
-      axios
-      .get(`/api/model/getSub/${manufactureer}`)
-      .then((res) => {
-        setModelOption(res?.data?.model)
-      })
-    }
+      
     axios
       .get(`/api/category/get`)
       .then((res) => {
@@ -151,7 +145,7 @@ export default function CustomizedAccordions() {
           setPageSize(res?.data?.pageSize);
         });
     }
-  }, [page, category, sub, manufactureer]);
+  }, [page, category, sub]);
 
   const handleSubClick = (e, sub) => {
     handleDrawerClose();
@@ -180,6 +174,18 @@ export default function CustomizedAccordions() {
     new Array(75),
     (val, index) => currentYear - index
   );
+
+  const handleManufacturer = (newValue) => {
+   const manufact = newValue
+   setManufacturer(newValue);
+   setModel('')
+   console.log('manufact---  ',manufact)
+   axios
+      .get(`/api/model/getSub/${manufact}`)
+      .then((res) => {
+        setModelOption(res?.data?.model)
+      })
+  } 
 
   const handleSearch = (e) => {
     handleDrawerClose();
@@ -261,7 +267,7 @@ export default function CustomizedAccordions() {
                         variant="outlined"
                         className={classes.textfield}
                         value={manufactureer}
-                        onChange={(e, newValue) => setManufacturer(newValue)}
+                        onChange={(e, newValue) => handleManufacturer(newValue)}
                         renderInput={(params) => (
                           <TextField {...params} label="Select Manufacturer" />
                         )}

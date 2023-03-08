@@ -60,21 +60,22 @@ export default function Details() {
   }
 
   const addToCart = (e) => {
-    e.preventDefault();
-    let parser = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-    console.log({parser})
-    if(!parser.length) {
-      // store = [cart]
-      const jsonCart = JSON.stringify([cart])
-      console.log({cart, jsonCart})
+    // e.preventDefault();
+    // let parser = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+    // console.log({parser})
+    // if(!parser.length) {
+    //   // store = [cart]
+    //   const jsonCart = JSON.stringify([cart])
+    //   console.log({cart, jsonCart})
 
-      localStorage.setItem('cart', jsonCart)
-    } else {
+    //   localStorage.setItem('cart', jsonCart)
+    // } else {
 
-      const jsonCart = [ ...parser , cart];
-      localStorage.setItem('cart',JSON.stringify(jsonCart || []))
-    }
-    window.location.href = '/cart'
+    //   const jsonCart = [ ...parser , cart];
+    //   localStorage.setItem('cart',JSON.stringify(jsonCart || []))
+    // }
+    // window.location.href = '/cart'
+    router.push('/contact')
   }
 
   return (
@@ -151,7 +152,7 @@ export default function Details() {
                       fullwidth
                       sx={{ backgroundColor: "#5C727D", color: "white" }}
                     >
-                      Add to Cart
+                      Want to buy?
                     </Button>
                   </Box>
                 </Box>
@@ -180,7 +181,7 @@ const useStyles = makeStyles((theme) =>
     },
     card: {
       width: "90%" ,
-      height:"385px",
+      height:"500px",
       margin: '1rem 1rem 1rem 1rem', 
       backgroundColor:"#F0F2F2",
       [theme.breakpoints.down('sm')]:{
