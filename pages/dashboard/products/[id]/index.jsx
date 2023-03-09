@@ -75,7 +75,7 @@ function UpdateProduct() {
         setSubCategory(res?.data?.subCategory);
       });
     }
-  }, [category]);
+  }, [category, manufacturer]);
 
   const updateProduct = (
     title,
@@ -271,13 +271,13 @@ function UpdateProduct() {
             <TextField
               className={classes.formFields}
               select
-              onChange={handleChange}
-              value={name}
+              onChange={(e) => setManufacturer(e.target.value)}
+              value={manufacturer}
               label="Manufacturer"
               type="text"
               margin="normal"
             >
-              {manufacturer?.map((opt) => (
+              {manufacturerOption?.map((opt) => (
                 <MenuItem key={opt?._id} value={opt?.name}>
                   {opt?.name}
                 </MenuItem>
@@ -409,13 +409,13 @@ function UpdateProduct() {
 
             <div className={styles.createProductFormImage}>
               {oldImages &&
-                oldImages.map((image, index) => (
+                oldImages?.map((image, index) => (
                   <img key={index} src={image.url} alt="Old Product Preview" />
                 ))}
             </div>
 
             <div className={styles.createProductFormImage}>
-              {imagesPreview.map((image, index) => (
+              {imagesPreview?.map((image, index) => (
                 <img key={index} src={image} alt="Product Preview" />
               ))}
             </div>
