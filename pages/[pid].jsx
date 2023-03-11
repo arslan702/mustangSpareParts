@@ -615,66 +615,6 @@ const useStyles = makeStyles((theme) =>
       width: '90%',
       margin: '0.6rem',
     },
-    helpdetails: {
-      "&:hover": {
-        cursor: "pointer",
-        marginRight: "2px",
-        color: 'white',
-      },
-      fontSize: '0.9rem',
-      fontWeight: '100',
-      padding: '0.7rem 0 0 1.3rem',
-      color: 'rgb(168, 178, 184)',
-      [theme?.breakpoints?.down("down")]: {
-        padding: '0.7rem 0 0 1rem',
-      }
-    },
-    footerdetail: {
-      textAlign: 'left',
-      fontWeight: '100',
-      fontSize: '10px',
-    },
-    menudetails: {
-      "&:hover": {
-        color: 'white',
-        cursor: 'pointer',
-        marginRight: '2px',
-      },
-      fontSize: '0.9rem',
-      fontWeight: '100',
-      padding: '0.7rem 0 0 0.9rem',
-      color: 'rgb(168, 178, 184)',
-    },
-    boxIcon: {
-      display: 'flex',
-      flexDirection: 'row',
-      marginTop: '0.7rem',
-      padding: '0rem 0 0 1.3rem',
-      color: 'rgb(168, 178, 184)',
-      [theme?.breakpoints?.down('md')]: {
-        padding: '0rem 0 0 0.8rem',
-      },
-    },
-    footerrights: {
-      "&:hover": {
-        cursor: 'pointer',
-        color: 'white',
-      },
-      margin: 'auto',
-      textAlign: 'center',
-      padding: '2.3rem 0rem 1rem 0',
-      fontSize: '1rem',
-      color: 'rgb(168, 178, 184)',
-    },
-    icons: {
-      "&:hover": {
-        color: 'rgb(168, 178, 184)',
-        cursor: 'pointer',
-      },
-      fontSize: '0.9rem',
-      padding: '6px',
-      margin: '0 5px',
-    },
     drawer: {
       width: '250px',
       flexShrink: 0,

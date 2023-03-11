@@ -2,12 +2,14 @@ import styles from './product.module.css';
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
 import axios from "axios";
+import { createStyles, makeStyles } from '@mui/styles';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export default function OrderPage() {
+  const classes = useStyles();
   const router = useRouter();
   const [totalOrders, setTotalOrders] = useState();
   const [pageSize, setPageSize] = useState();
@@ -153,10 +155,10 @@ export default function OrderPage() {
   return (
     <div className={styles.productList}>
       <h1 className={styles.addProductTitle}>Orders</h1>
-      <div style={{marginTop: '20px'}}>
+      <div className={classes.form}>
         <TextField 
           select
-          style={{ width: "20%" }}
+          className={classes.formFields}
           labelId="demo-select-small"
           id="demo-select-small"
           value={field}
@@ -171,7 +173,7 @@ export default function OrderPage() {
           <MenuItem value={"phoneNo"}>Phone No</MenuItem>
         </TextField>
         <TextField
-          style={{ marginLeft: "40px" }}
+          className={classes.formFields}
           id="outlined-required"
           label="search with different values"
           placeholder="e.g bag:shirt:cap"
@@ -180,9 +182,8 @@ export default function OrderPage() {
         />{" "}
         <Button
           variant='contained'
-          style={{ marginLeft: "30px", backgroundColor: '#BE1818', height: '55px' }}
+          className={classes.buttons}
           onClick={handleDiffSearch}
-          className={styles.addProductButton}
         >
           Search
         </Button>
@@ -211,3 +212,37 @@ export default function OrderPage() {
 OrderPage.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    form: {
+      display: 'flex',
+      flexWrap: 'wrap',
+ 
+    },
+    formFields: {
+      flexBasis: '25%',
+      margin: '10px',
+      marginLeft: '0px',
+      [theme?.breakpoints?.down('sm')]: {
+        flexBasis: '100%',
+        marginLeft: '0px',
+      },
+    },
+    nestedField: {
+      flexBasis: '',
+    },
+    buttons: {
+      // flexBasis: '91.5%',
+      // justifyContent: 'flex-end',
+      margin: '10px',
+      backgroundColor: '#BE1818',
+      height: '55px',
+      marginLeft: '0px',
+      [theme?.breakpoints?.down('sm')]: {
+        flexBasis: '100%',
+        marginLeft: '0px',
+      },
+    },
+  })
+);

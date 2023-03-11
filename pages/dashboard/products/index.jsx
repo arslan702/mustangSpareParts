@@ -2,12 +2,14 @@ import styles from './product.module.css';
 import { DataGrid } from "@mui/x-data-grid";
 import { DeleteOutline } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { Button, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, MenuItem, TextField } from "@mui/material";
 import axios from "axios";
+import { makeStyles, createStyles } from '@mui/styles';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export default function ProductPage() {
+  const classes = useStyles();
   const router = useRouter();
   const [totalProducts, setTotalProducts] = useState();
   const [pageSize, setPageSize] = useState();
@@ -178,27 +180,28 @@ export default function ProductPage() {
       >
         Create New Product
       </Button>
-      <div>
+      <div className={classes.form}>
         <TextField
           select
+          className={classes.formFields}
           labelId="demo-select-small"
           id="demo-select-small"
           value={field}
           label="Select Field"
-          sx={{width: '20%'}}
           onChange={(e) => setField(e.target.value)}
         >
           <MenuItem value={"title"}>Name</MenuItem>
-          <MenuItem value={"category"}>Brand</MenuItem>
-          <MenuItem value={"sub"}>Category</MenuItem>
+          <MenuItem value={"manufacturer"}>Manufacturer</MenuItem>
+          <MenuItem value={"model"}>Model</MenuItem>
+          <MenuItem value={"category"}>Category</MenuItem>
+          <MenuItem value={"sub"}>Sub Category</MenuItem>
           <MenuItem value={"price"}>Price</MenuItem>
           <MenuItem value={"oldPrice"}>Old Price</MenuItem>
           <MenuItem value={"stock"}>Stock</MenuItem>
-          <MenuItem value={"trending"}>Trending</MenuItem>
           <MenuItem value={"hot"}>Hot Selling</MenuItem>
         </TextField>
         <TextField
-          style={{ marginLeft: "40px" }}
+          className={classes.formFields}
           id="outlined-required"
           label="search with different values"
           placeholder="e.g bag:shirt:cap"
@@ -207,9 +210,8 @@ export default function ProductPage() {
         />{" "}
         <Button
           variant='contained'
-          style={{ marginLeft: "30px", backgroundColor: '#BE1818', height: '55px' }}
           onClick={handleDiffSearch}
-          className={styles.addProductButton}
+          className={classes.buttons}
         >
           Search
         </Button>
@@ -238,3 +240,37 @@ export default function ProductPage() {
 ProductPage.getLayout = function PageLayout(page) {
   return <>{page}</>;
 };
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    form: {
+      display: 'flex',
+      flexWrap: 'wrap',
+ 
+    },
+    formFields: {
+      flexBasis: '25%',
+      margin: '10px',
+      marginLeft: '0px',
+      [theme?.breakpoints?.down('sm')]: {
+        flexBasis: '100%',
+        marginLeft: '0px',
+      },
+    },
+    nestedField: {
+      flexBasis: '',
+    },
+    buttons: {
+      // flexBasis: '91.5%',
+      // justifyContent: 'flex-end',
+      margin: '10px',
+      backgroundColor: '#BE1818',
+      height: '55px',
+      marginLeft: '0px',
+      [theme?.breakpoints?.down('sm')]: {
+        flexBasis: '100%',
+        marginLeft: '0px',
+      },
+    },
+  })
+);
