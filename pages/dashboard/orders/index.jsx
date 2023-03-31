@@ -233,8 +233,6 @@ const useStyles = makeStyles((theme) =>
       flexBasis: '',
     },
     buttons: {
-      // flexBasis: '91.5%',
-      // justifyContent: 'flex-end',
       margin: '10px',
       backgroundColor: '#BE1818',
       height: '55px',
